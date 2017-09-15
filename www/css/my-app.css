@@ -1,0 +1,17 @@
+.item-title div {
+    display: inline-block;
+}
+
+p {
+    font-size: 0.70em;
+}
+
+div img {
+    width: 70px;
+    margin-right: 1em;
+}
+
+.accordion-item-content p {
+    margin-left: 1.75em;
+    font-size 1em;
+}
