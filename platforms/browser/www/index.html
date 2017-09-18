@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"-->
-        <!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;**script-src 'self' http://onlineerp.solution.quebec 'unsafe-inline' 'unsafe-eval';** "-->
 
-    <!-- Required meta tags-->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,97 +9,147 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
 
-    <!-- Your app title -->
-        <title>GitHub Public Events Feed</title>
-
-    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
-        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
-     -->
-
-        <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
+        <title>GitHub Events Feed</title>
+        
         <link rel="stylesheet" href="css/framework7-icons.css">
-        <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
-        <link rel="stylesheet" href="lib/css/framework7.material.colors.css">
-        <link rel="stylesheet" href="lib/css/framework7.material.colors.css">
-        <link rel="stylesheet" href="css/my-app.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/my-app.css">
     </head>
     <body onload="initLoad()">
+        
+        <div class="panel-overlay"></div>
         <div class="views">
             <div class="view view-main">
                 <div class="pages navbar-fixed toolbar-fixed">
+                    
+                    <!-- Index/Home page -->
                     <div class="page" data-page="index">
-                        
-                        <!-- Dynamic navbar for iOS theme -->
-                        
-                        {{#if @global.ios}}
-                            <div class="navbar">
-                                <div class="navbar-inner">
-                                    <div class="left"><i class="f7-icons">social_github_fill</i> &nbsp GitHub Public Events Feed</div>
-                                    <div class="right"><a href="javascript:myApp.pullToRefreshTrigger(ptrContent)" class="link"><i class="f7-icons">reload_round</i></a></div>
-                                </div>
-                            </div>
-                        {{/if}}
-                        
-                        
-                        <div class="page" data-page="index">
-                        -->
-                            <!-- Fixed navbar for Material theme -->
-                        
-                            {{#if @global.android}}
-                            <div class="navbar">
-                                <div class="navbar-inner">
-                                    <div class="left"><i class="f7-icons">social_github_fill</i> &nbsp GitHub Public Events Feed</div>
-                                    <div class="right"><a href="javascript:myApp.pullToRefreshTrigger(ptrContent)" class="link"><i class="f7-icons">reload_round</i></a></div>
-                                </div>
-                            </div>
-                            {{/if}}
-                        
-                        
-                        <!--div class="navbar">
+                        <div class="navbar">
                             <div class="navbar-inner">
-                                <div class="left"><i class="f7-icons">social_github_fill</i> &nbsp GitHub Public Events Feed</div>
-                                <div class="right"><a href="javascript:myApp.pullToRefreshTrigger(ptrContent)" class="link"><i class="f7-icons">reload_round</i></a></div>
+                                <div class="left"><i class="f7-icons">social_github_fill</i> GitHub Events Feed</div>
+                                <div class="right"><a href="javascript:myApp.pullToRefreshTrigger(ptrContent2)" class="link"><i class="f7-icons">reload_round</i></a></div>
                             </div>
-                        </div-->
-                            
-                        <div class="page-content pull-to-refresh-content">
+                        </div>
+                        <div class="toolbar toolbar-bottom">
+                            <div class="toolbar-inner">
+                                <a href="#index" class="link">Public Events</a>
+                                <a href="#user-feed" class="link open-login-screen" id="personal-events">Personal Events</a>
+                            </div>
+                        </div>
+                        <div class="page-content pull-to-refresh-content index-refresh">
                             <div class="pull-to-refresh-layer">
                                 <div class="preloader"></div>
                                 <div class="pull-to-refresh-arrow"></div>
                             </div>
                             <div class="list-block accordion-list">
                                 <ul id="ulAPI">
-                                    <li id="liAPI"></li>
+                                    <li></li>
                                 </ul>
                             </div>
                         </div>
-                        <!--div class="toolbar">
-                            <div class="toolbar-inner">
-                                <a href="#" class="link">Link 1</a>
-                                <a href="#" class="link">Link 2</a>
-                                <a href="#" class="link">Link 3</a>
+                    </div>
+                    
+                    <!-- User Feed Page -->
+                    <div class="page cached" data-page="user-feed">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <div class="left"><i class="f7-icons">social_github_fill</i> GitHub Events Feed</div>
+                                <div class="right"><a href="javascript:myApp.pullToRefreshTrigger(ptrContent2)" class="link"><i class="f7-icons">reload_round</i></a></div>
                             </div>
-                        </div-->
+                        </div>
+                        <div class="toolbar toolbar-bottom">
+                            <div class="toolbar-inner">
+                                <a href="#index" class="link">Public Events</a>
+                                <a href="#user-feed" class="link">Personal Events</a>
+                            </div>
+                        </div>
+                        <div class="page-content pull-to-refresh-content user-refresh">
+                            <div class="pull-to-refresh-layer">
+                                <div class="preloader"></div>
+                                <div class="pull-to-refresh-arrow"></div>
+                            </div>
+                            <div class="list-block accordion-list">
+                                <ul id="userUL">
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
+        <!-- Startup Script -->
         <script>
+            
             function initLoad() {
+                if (Framework7.prototype.device.android) {
+                    
+              Dom7('head').append(
+                  
+                  '<link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">' +
+                  '<link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">');
+                    
+                } else {
+                    
+              Dom7('head').append(
+                  
+                  '<link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">' +
+                  '<link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">');
+                    
+                }
+                
                 myApp.pullToRefreshTrigger(ptrContent);
+                
             }
         </script>
-    <!-- Path to Framework7 Library JS-->
+        
         <script type="text/javascript" src="js/framework7.min.js"></script>
-    <!-- Path to your app js-->
         <script type="text/javascript" src="js/my-app.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <!--script type="text/javascript">
-            myApp.initialize();
-        </script-->
+        
+        <!-- Login Screen -->
+        <div class="login-screen">
+            <div class="view">
+                <div class="page">
+                    <div class="page-content login-screen-content">
+                        <div class="login-screen-title">Log In</div>
+                            <form>
+                                <div class="list-block">
+                                    <ul>
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">Username</div>
+                                                    <div class="item-input">
+                                                        <input type="text" name="username" id="username" placeholder="Your username">
+                                                    </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">Password</div>
+                                                <div class="item-input">
+                                                    <input type="password" name="password" id="password" placeholder="For private events (optional)">
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="list-block">
+                                    <ul>
+                                        <li><a href="javascript:myApp.pullToRefreshTrigger(ptrContent2);" class="item-link list-button">Sign In</a></li>
+                                    </ul>
+                                <div class="list-block-label">
+                                    <p><a href="#index" class="close-login-screen">Close Login Screen</a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </body>
 
 </html>

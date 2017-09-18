@@ -1,6 +1,34 @@
+# GitHub Events Feed
+### Installation and Instructions
+There are two ways to run the application. The first of which is to download the APK (included in the folder named "Android APK") and install it on an Android device, such as a tablet or phone. 
+
+Additionally, one could opt to run it 'locally' in their browser of choice by navigating to /www/index.html. If you choose to open the html directly in the Chrome browser and would like to see how it would look on a given device, right click in the middle of the page and click "inspect element." Once in view, you can click the "Toggle Device" button to select your mobile device of choice.
+
+
+### Features
+- Touch friendly
+- Pull down refresh
+- Refresh button
+- Mobile focused framework
+- Feed of public events (30 most recent)
+    - Each event includes the user avatar, username, event type, and repository name
+        - Touch/Click expandable details include event ID, time, repository URL (clickable), repository ID, organization name, organization URL, organization ID, user URL, and user ID
+- User Authentication
+    - User feed of events (public and private)
+        - If the user provides correct password information, both private and public events will display in their feed; otherwise only public events will display
+- Clickable repository links
+- Screen rotation
+- Device specific CSS will be applied depending on the device accessing the webapp (Android or iOS), or for which device the code has been compiled for using PhoneGap.
+
+### Future improvements
+- Improved Security
+    - With proper use of OAuth, this application could bypass the need for storing sensitive information in the form of string variables.
+
+### Other Notes
+To achieve optimal cross-platform integration between iOS and Android, I chose to write this application in HTML5. With access to the PhoneGap Build service, I was able to produce a smoothly working APK, and with proper authorization from Apple, the application could be just as easily compiled for use on iOS. Thanks to the Framework7 HTML5 framework, this application displays using the proper mobile elements specific to the given device.
+
+-------------------------------------------------------------------------------------------------------------------------
 # Technical Interview Homework: GitHub Dashboard
-
-
 ##Purpose
 The purpose of this exercise is to assess the candidate’s ability to build cross platform software clients that satisfy stated requirements. The completed assignment should not only satisfy the requirements outlined below, but also give the candidate an opportunity to show-off their skills.
 

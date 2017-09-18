@@ -13,5 +13,27 @@ div img {
 
 .accordion-item-content p {
     margin-left: 1.75em;
-    font-size 1em;
+    font-size 0.75em;
+}
+
+i {
+    margin-left: .75em;
+    margin-right: .25em;
+}
+
+#login-menu {
+    margin-left: 0px;
+    margin-right: .5em;
+}
+
+#user-avatar {
+    margin-top: 1em;
+    width: 150px;
+}
+
+#userUl {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75em;
 }
